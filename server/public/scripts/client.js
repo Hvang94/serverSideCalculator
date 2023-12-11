@@ -43,16 +43,32 @@ function renderMath() {
       let recentResults = document.getElementById("recentResult");
       let resultHistory = document.getElementById("resultHistory");
       let incomingArr = response.data;
-      let tesHistory = [];
+      let history = [];
       incomingArr.forEach((math) => {
         recentResults.innerHTML = math.result;
-        tesHistory.push(`<li>${math.numOne}${math.operator}${math.numTwo} = ${math.result}</li>`)
+        history.push(`<div>${math.numOne} ${math.operator} ${math.numTwo} = ${math.result}</div>`)
       });
-      resultHistory.innerHTML = tesHistory
-      console.log(tesHistory);
+      resultHistory.innerHTML = history.join('')
+      console.log(history);
     })
     .catch((error) => {
       console.log("server error", error);
     });
+}
+
+function clearFunction(){
+  
+  axios({
+    method: "POST",
+    url: "/clear",
+    data: {}
+  })
+  .then((response)=>{
+    renderMath()
+  })
+  .catch((error)=>{
+    console.log("server error", error);
+  })
+  
 }
 onReady();

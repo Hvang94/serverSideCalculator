@@ -50,6 +50,12 @@ app.post("/calculator", (req, res) => {
   console.log(serverCalculate);
   res.sendStatus(200);
 });
+
+app.post("/clear", (req, res) => {
+  serverCalculate.length = 0;
+  result = 0;
+  res.sendStatus(201)
+  })
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
 // 🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸
 
