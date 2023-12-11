@@ -7,7 +7,6 @@ let operator;
 function setOperator(symbol, event) {
   event.preventDefault();
   operator = symbol;
-  console.log(num1, num2, operator);
 }
 
 function calculateHandler(event) {
@@ -27,6 +26,7 @@ function calculateHandler(event) {
   })
     .then((response) => {
       console.log("successfully added", response);
+      renderMath();
     })
     .catch((error) => {
       console.log("server error", error);
@@ -43,12 +43,13 @@ function renderMath() {
       let recentResults = document.getElementById("recentResult");
       let resultHistory = document.getElementById("resultHistory");
       let incomingArr = response.data;
-      let results = result;
-
-      recentResults.innerHTML = "";
-      resultHistory.innerHTML = ""
-      recentResults += results;
-      resultHistory =+ `<div> ${numOne} ${operator} ${numTwo} = ${result}</div>`
+      let tesHistory = [];
+      incomingArr.forEach((math) => {
+        recentResults.innerHTML = math.result;
+        tesHistory.push(`<li>${math.numOne}${math.operator}${math.numTwo} = ${math.result}</li>`)
+      });
+      resultHistory.innerHTML = tesHistory
+      console.log(tesHistory);
     })
     .catch((error) => {
       console.log("server error", error);

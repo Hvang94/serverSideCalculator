@@ -47,6 +47,7 @@ app.post("/calculator", (req, res) => {
     operator: operator,
     result: result,
   });
+  console.log(serverCalculate);
   res.sendStatus(200);
 });
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
