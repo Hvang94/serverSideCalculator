@@ -48,7 +48,7 @@ app.post("/calculator", (req, res) => {
     result: result,
   });
   console.log(serverCalculate);
-  res.sendStatus(200);
+  res.sendStatus(201);
 });
 
 app.post("/clear", (req, res) => {
